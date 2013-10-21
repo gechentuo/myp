@@ -1,0 +1,2 @@
+class Clas < ActiveRecord::Base
+end

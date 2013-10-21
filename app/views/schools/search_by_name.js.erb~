@@ -1,0 +1,1 @@
+$(".schools_ul").html(  "<%= escape_javascript(render(@schools))%>"  )

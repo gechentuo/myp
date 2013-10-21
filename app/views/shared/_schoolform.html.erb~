@@ -1,0 +1,44 @@
+<%-
+	province = '440000'
+    
+	city = '440300'
+  
+	district = '440305'
+	
+	provinces  = ChinaCity.list
+      
+	cities     = ChinaCity.list(province)
+    
+	districtes = ChinaCity.list(city)
+%>
+<% content_for :script do%>
+<script type="text/javascript">
+	$(document).ready(function(){
+		alert($("#allmap"));	
+	})
+</script>
+<% end %>
+
+<%= form_for( @school ) do |f| %>
+
+	<%= f.label :schname, '幼儿园名称'%>
+	<%= f.text_field :schname, class: "input-xlarge" %>
+	<br>
+	<%= f.label :phone, '联系电话'%>
+	<%= f.text_field :phone, class: "input-xlarge" %>
+	<br>
+	<%= f.label :privince, '地区' %>
+	<div class='rails-helper city-group '>
+		<ul class="ul_float input-block-level">
+			<li>
+			<%= select_tag :province, options_for_select(provinces, province) , prompt: '--省份--', class: ['city-select', 'city-province'] %></li>
+			<li><%= select_tag :city    , options_for_select(cities, city)        , prompt: '--城市--', class: ['city-select', 'city-city'] %></li>
+			<li><%= select_tag :district, options_for_select(districtes, district), prompt: '--地区--', class: ['city-select', 'city-district'] %></li>
+		</ul>
+	</div>
+	<br>
+	<%= f.label :address, '街道地址' %>
+	<%= f.text_field :address, class: "input-xlarge" %>
+	<br>
+	<%= f.submit '提交', class: "btn btn-large btn-primary"%>
+<% end %>

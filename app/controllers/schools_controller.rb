@@ -1,0 +1,84 @@
+# coding: utf-8
+class SchoolsController < ApplicationController
+  def create
+	  @school = School.new(school_params)
+	  @school.user = current_user
+	  province = ChinaCity.get(params[:province])
+	  city = ChinaCity.get(params[:city])
+	  district = ChinaCity.get(params[:district])
+	  @school.location = province+city+district+@school.location
+	  if @school.save
+		Address.new(province: province, city: city, district: district, school: @school).save
+		redirect_to root_url(current_user)
+	  else
+		  render 'schools/new'
+	  end
+  end
+
+  def new
+	  @school = School.new
+  end
+
+  def update
+	  @school = School.find(params[:id])
+	  if @school.update_attributes(school_params)
+		  flash[:success] = "幼儿园信息更新成功!"
+		  redirect_to root_url(current_user)
+	  else
+		  render 'edit'
+	  end
+
+  end
+  
+  def edit
+	  @school = School.find(params[:id])
+  end
+ 
+  def admin
+	  @school = School.new
+	  @school.user = current_user
+	  if !current_user.school.nil?
+		  @school = current_user.school
+	  end
+  end
+  
+  def destroy
+  end
+
+  #admin basic informations
+  def adbas
+  end
+  #admin demonstrate pages
+  def addem
+  end
+  
+
+  # admin classes in this school
+  def adclas
+  	@grade = Grade.new
+	@grades = current_user.school.grades
+	@cla = Cla.new
+	
+  end
+
+  def search_by_name
+  	@schools = School.where(schname: params[:name])
+	respond_to do |format|
+		format.js
+	end
+  end
+
+  def search_by_location
+ 	@schools = School.joins(:address).where("addresses.province like ? and addresses.city like ? and addresses.district like ?","%"+ChinaCity.get(params[:province])+"%","%"+ChinaCity.get(params[:city])+"%","%"+ChinaCity.get(params[:district])+"%")
+	respond_to do |format|
+		format.js
+	end
+  end
+	 
+
+  private
+  def school_params
+	  params.require(:school).permit(:schname, :location, :phone)
+  end
+
+end

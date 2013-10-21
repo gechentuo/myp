@@ -1,0 +1,5 @@
+<li>
+<div class="cla">
+	<%= cla.name %>
+</div>
+</li>

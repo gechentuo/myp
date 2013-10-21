@@ -1,0 +1,4 @@
+class ClasessController < ApplicationController
+  def index
+  end
+end

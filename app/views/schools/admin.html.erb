@@ -1,0 +1,48 @@
+<% content_for :scripts do %>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#switch_schinfo").click(function(){
+			$("#schinfo").toggle();
+		});
+	});
+</script>
+<% end %>
+<% content_for :leftsidebar do %>
+	<%= render 'shared/schsidebar'%>
+<% end %>
+
+<div class="content">
+<% content_for :main do %>
+	<% if current_user.school.nil? %>
+
+		<div class="span5">
+			<%= render "schoolform" %>
+	
+		</div>
+		<div class="span5">
+			<%= render "shared/map"%>
+		</div>
+
+	<% else %>
+		
+			<div class="span10">
+				<ul class="ul_float">
+					<li>
+						<h4 style="display:block;">幼儿园信息</h4>
+					</li>
+
+					<li>
+						<a href="javascript:;" id="switch_schinfo" href="#" style="padding-left:15px;font-size: 1em; font-space:2px;">查看</a>
+					</li>
+				</div>
+		
+			<div id = "schinfo" class="span10">	
+				
+				<%= render partial: 'schools/schinfo', locals: {school: current_user.school} %>
+		
+			</div>
+	<%end%>
+
+<% end %>
+
+</div>

@@ -1,0 +1,24 @@
+<% content_for :scripts do%>
+<script type="text/javascript">
+ $(document).ready(function(){
+		 var cs = $("#cu_school").val();
+		 if( !cs ){
+			$("ul.sidebar").children("li").attr('class','disabled');			
+			$("ul.sidebar li").children("a").click(function(event){
+				event.preventDefault();
+				alert("请先完善幼儿园基本信息!");
+			});
+		}
+ })
+</script>
+<% end %>
+
+<div class="span2">
+	<ul class="nav ">
+		<li><%= link_to "幼儿园信息管理", adbas_school_path(current_user.school)%></li>
+		<li><%= link_to "班级管理" , adclas_school_path(current_user.school) %></li>
+		<li><%= link_to "宣传页面管理", addem_school_path(current_user.school)%></li>
+		<input type="hidden" id="cu_school" value="<%= current_user.school%>"/>	
+	</ul>
+</div>
+

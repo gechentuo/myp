@@ -1,0 +1,21 @@
+.grade{
+	height:200px;
+	margin-top: 10px;
+	border-bottom: 1px solid #E4E4E4;
+	#gtitle{
+	font-size: 2em;
+	color: rgb(60,136,233);
+	}
+}
+.clas{
+	margin-top: 16px;
+	height:116px;
+	width:116px;
+	-webkit-border-radius: 6px;
+	-moz-border-raius: 6px;
+	border-radius: 6px;
+	border: 2px solid gray;
+	float: left;
+
+}
+

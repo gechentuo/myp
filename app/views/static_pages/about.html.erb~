@@ -1,0 +1,42 @@
+<% content_for :scripts do%>
+<script type="text/javascript"> 
+$(document).bind("mobileinit", function(){
+}); 
+$( function() {
+    //默认设置，一个小圈圈在转
+    $('#default').live( 'tap', function() {
+      $.mobile.loadingMessageTextVisible = false;
+      $.mobile.showPageLoadingMsg();
+    } );
+    //小圈子外围加矩形的背景
+    $('#loadingMessageTextVisible').live( 'tap', function() {
+	$.mobile.loadingMessageTextVisible = true;
+	$.mobile.loadingMessageTheme = 'a';
+        $.mobile.showPageLoadingMsg();
+    } );
+    //矩形背景样式为e
+    $('#loadingMessageTheme').live( 'tap', function() {
+	$.mobile.loadingMessageTextVisible = true;
+	$.mobile.loadingMessageTheme = 'e';
+        $.mobile.showPageLoadingMsg();
+    } );
+    //小圈子下面加上文字
+    $('#customText').live( 'tap', function() {
+	$.mobile.loadingMessageTextVisible = true;
+        $.mobile.showPageLoadingMsg( 'a', "Please wait..." );
+    } );
+    //只有文字，没有小圈子在转
+    $('#noSpinner').live( 'tap', function() {
+	$.mobile.loadingMessageTextVisible = true;
+        $.mobile.showPageLoadingMsg( 'a', "Please wait...", true );
+    } );
+
+  } );
+ 
+</script>
+<% end %>
+ <p><a id="default" data-role="button">Default Loader</a></p>
+<p><a id="loadingMessageTextVisible" data-role="button">loadingMessageTextVisible = true</a></p>
+<p><a id="loadingMessageTheme" data-role="button">loadingMessageTheme = 'e'</a></p>
+<p><a id="customText" data-role="button">Custom Text</a></p>
+<p><a id="noSpinner" data-role="button">No Spinner</a></p>

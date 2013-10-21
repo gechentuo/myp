@@ -1,0 +1,18 @@
+<li>
+<div class="school">
+	<div class="schimg"></div>
+	<div class="schinfo">
+		<ul class="ul_float">
+			<li>		
+			<p><%= school.schname%></p>
+				<p>地址:<%= school.location%></p>
+				<p>电话:<%= school.phone%> </p>
+			</li>	
+			<li>					
+				<p><button class="btn btn-warning">选择</button></p>
+			</li>		
+			</ul> 
+	</div>
+			
+</div>
+</li>

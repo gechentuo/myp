@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Myp</title>
+ <%= stylesheet_link_tag    "application"  %>
+ <%= javascript_include_tag "application", media: "all"%>
+ <%= csrf_meta_tags %>
+ <%= yield :scripts%>
+ <script type="text/javascript">
+	$(document).ready(function(){
+				$("#nav .nav li").children(":lt(4)").css("font-size","smaller").css("color","white");
+			})
+ </script>
+</head>
+<body>
+		<%= render 'layouts/header' %>
+	<div class="main">
+		<div  class="leftsidebar span2">
+			<%= yield :leftsidebar%>
+		</div>
+		<%= yield :login %>
+		<%= yield :free%>
+		<div class="content span10">
+			<%= yield :main %>
+		</div>
+		<div class="rightsidebar span3">
+			<%= yield :rightsidebar%>
+		</div>
+	</div>
+
+	<%= render 'layouts/footer' %>
+	<%= yield :script%>
+</body>
+</html>

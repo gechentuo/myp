@@ -1,0 +1,9 @@
+<div class="row">
+	<div  class="span6 offset3">
+		<%= form_for(@school) do |f|%>
+			<%= render 'shared/error_messages', object: f.object %>
+
+			<%= f.label :schname,'幼儿园名称' %>
+			<%= f.text_field :schname %>
+
+

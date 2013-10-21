@@ -1,0 +1,24 @@
+#encoding: utf-8
+class StaticPagesController < ApplicationController
+  def home
+	 if signed_in?
+		 if current_user.user_type == 1
+				 redirect_to admin_schools_path
+		 end
+		 if current_user.user_type == 3
+			 redirect_to select_school_user_path(current_user)
+		 end
+	 else
+		 render 'sessions/new'
+	 end
+  end
+
+  def help
+  end
+
+  def about
+  end
+
+  def contact
+  end
+end

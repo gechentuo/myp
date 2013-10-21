@@ -1,0 +1,66 @@
+class UsersController < ApplicationController
+  def create
+   @user = User.new(user_params)
+	if @user.save
+	flash[:success] = "注册成功!"
+	sign_in @user
+	render 'select_type' 
+	else
+	 render 'new'
+	end
+  end
+
+  def new
+   @user = User.new
+  end
+
+  def index
+  end
+
+  def show
+  end
+
+  def update 
+  end
+
+  def select_type
+   @user= User.find(params[:id])
+  end
+
+  def update_type
+   @user = User.find(params[:id])
+   type = params[:type]
+    
+   if type == 'school'
+      data = 1
+      msg = '幼儿园管理'
+   end
+  
+   if type == 'parent'
+	   msg = '家长'
+	   data = 2
+   end   
+  
+   if type == 'teacher'
+	   msg= '幼师'
+	   data = 3
+   end   
+
+   if @user.update(user_type: data)
+      flash[:success] = "您成功开通了#{msg}服务！"
+      redirect_to root_url(@user) 
+   else
+      flash[:alert] = "您未成功开通#{msg}服务！请重新操作！"
+      render 'select_type'
+   end
+  end
+
+
+  def select_school
+   @schools = []	
+  end
+  private
+   def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+   end
+end

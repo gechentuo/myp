@@ -1,0 +1,29 @@
+<li>
+<div id="g<%= grade.id %>" class="grade"> 
+<ul class="ul_float" style="height:30px">
+	<li><span id="gtitle"><%= grade.name %></span></li>
+	<li style="float:right"><a href="#addCla<%=grade.id%>" role="button" class="btn btn-mini btn-info" data-toggle="modal">添加班级</a></li>
+
+
+</ul>
+<div>
+<ul class="clas_ul">
+	<%= render(grade.clas) || "这个年级中还没有班级被创建!"%>
+</ul>
+</div>
+<div><span id="show<%=grade.id%>" class="show btn btn-link">显示所有班级</span></div>
+</li>
+<div id="addCla<%=grade.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="addCla" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		<h4 id="addCla">添加班级</h4>
+	</div>
+	<div class="modal-body">
+		<%= form_for(@cla, remote: true) do |f|%>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+			<input type="hidden" name="gid" value="<%= grade.id%>">
+			<%= f.submit "创建班级", style: "margin-bottom: 10px; margin-left: 15px;"%>
+		<% end %>
+	</div>
+</div>

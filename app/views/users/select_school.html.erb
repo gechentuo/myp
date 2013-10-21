@@ -1,0 +1,43 @@
+<%- 
+	province = ''
+	city = ''
+	district = ''
+	provinces  = ChinaCity.list
+	cities     = ChinaCity.list(province)
+	districtes = ChinaCity.list(city)
+%>
+<% content_for :free do %>
+	<div class="row span10" style=" float:none;   border-bottom: 2px solid rgb(196, 205, 224);    border-left: 1px solid rgb(196, 205, 224);    border-right: 1px solid rgb(196, 205, 224);    border-top: 1px solid rgb(196, 205, 224); 
+ background-color: rgb(231, 235, 242); 
+				margin-bottom: 5px; margin-left:0px; ">
+		<form accept-charset="UTF-8" action="/users/1/qschbyname" data-remote="true" method="get" style="margin:0;float:right; "><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
+				 
+				<input type="text" name="name" value="按幼儿园名称搜索" style="
+    height: 15px;
+    font-size: small;
+    margin-top: 10px;
+">
+				<input type="submit" class="btn btn-mini" value="搜索" style="
+    margin-top: 0px;
+">
+</form>
+</div>
+<% end %>
+<% content_for :main do%>
+	
+
+	<div class="row" style="border-bottom: 2px solid rgb(196, 205, 224);    border-left: 1px solid rgb(196, 205, 224);    border-right: 1px solid rgb(196, 205, 224);    border-top: 1px solid rgb(196, 205, 224);margin-left:0px; ">
+	<div>
+		<h4 style="/* margin-left:20px */border-bottom: 1px solid #e5e5e5;">搜索结果:</h4>
+		<ul class="schools_ul">
+			<%= render(@schools) || "没有找到符合条件的幼儿园!"%>
+		</ul>
+	</div>
+			
+</div>
+</li>
+</ul>
+
+
+		</div>
+<% end %>

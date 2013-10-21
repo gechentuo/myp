@@ -1,0 +1,15 @@
+class CreateAddresses < ActiveRecord::Migration
+  def change
+    create_table :addresses do |t|
+      t.belongs_to :school
+      t.string :province
+      t.string :city
+      t.string :district
+      t.timestamps
+    end
+
+    change_table :schools do |t|
+      t.rename :address, :location
+    end
+  end
+end

@@ -1,0 +1,283 @@
+@import "bootstrap";
+@mixin box_sizing {
+ -moz-box-sizing: border-box;
+ -webkit-box-sizing: border-box;
+ box-sizing: border-box;
+}
+
+/* Universal  */
+
+html{
+	overflow-y: scroll;
+}
+
+body{
+	padding-top: 44px;
+	width:90%;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+section{
+	overflow: atuo;
+}
+
+textarea{
+	resize: vertical;
+}
+
+.center{
+	text-align: center;
+}
+
+.center h1{
+	margin-bottom: 10px;
+}
+
+/* typography  */
+.navfont{
+	font-size:smaller;
+	color:white;
+}
+h1,h2,h3,h4,h5,h6{
+	color: rgb(51,51,51);
+	line-height: 1;
+}
+span{
+	color:rgb(51,51,51);
+}
+h1{
+	font-size: 3em;
+	letter-spacing: -2px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+h2{
+	font-size: 1.2em;
+	letter-spacing: -1px;
+	margin-bottom: 30px;
+	text-align: center;
+	font-weight: normal;
+	color: #999;
+}
+
+p{
+	color:rgb(51,51,51);
+	font-size: 1.1em;
+	line-height: 1.7em;
+}
+
+
+ul{
+	padding:0;
+
+}
+/* header  */
+#logo{
+	float: left;
+	margin-right: 10px;
+	font-size: 1.7em;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: -1px;
+	padding-top: 9px;
+	font-weight: blod;
+	line-height: 1;
+	&.hover{
+		color: #fff;
+		text-decoration: none;
+	}
+}
+
+.headnav{
+	position: relative;
+	left: 0;
+	display:block;
+	margin: 0 10px 0 0;
+
+
+	li{
+		float:left;
+		a{
+	font-size:small;
+	float:none;
+	padding: 10px 8px 10px;
+	color: #fff;
+	text-decoration: none;
+			
+		}
+	}
+}
+/* main  */
+.main{
+	height:auto;
+	width: auto;
+	overflow:auto;
+	margin-left:107px;
+}
+/* footer */
+footer{
+	width:85%;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top: 45px;
+	padding-top: 5px;
+	border-top: 1px solid #eaeaea;
+	color: #999;
+	a{
+		color: #555;
+		&:hover{
+			color: #222;
+		}
+	}
+	small {
+		float: left;
+	}
+	ul{
+		float: right;
+		list-style: none;
+		li{
+			float: left;
+			margin-left: 10px;
+		}
+	}
+}
+
+/* content */
+.content{
+	height:auto;
+	border-left: 1px solid rgb(204,204,204);
+	border-right: 1px solid rgb(204,204,204);
+	margin-left:0px;
+}
+.leftsidebar{
+	height:auto;
+	font-size:13px;
+
+	a{
+		color: rgb(51,51,51);
+		margin-left: -15px;
+	}
+	
+}
+
+.rightsidebar{
+	height:auto;
+}
+
+/* user_type  */
+#select_user_type{
+	float:left;
+	width:80%;
+	margin-left:auto;
+	margin-right:auto;
+}
+.user_type{
+	p{
+		font-size: 1em;
+		color: gray;
+	}
+	ul{
+		margin-top: 3%;
+	
+		float:left;
+  
+		list-style: none;
+  
+		li{
+			height: 27%;
+			width: 23%;
+  			
+			
+			float: left;
+
+			margin-right: 7%;
+
+			margin-bottom: 3%;
+
+			img{
+			  height: 150px;
+			  width: 150px;
+			}
+		}
+
+	}
+	input {
+	margin-left:40%;
+	}
+	label {
+	margin-left:40%;
+	}
+
+	
+}
+
+/* school  */
+.functionbar{
+	height:20px ;
+	width: 100%;
+	ul{
+	float:left;
+	list-style:none;
+	li{
+		margin-right: 15px;
+		float:left;
+		font-size: 1em;
+	}
+}
+
+}
+#schinfo{
+	padding-top:10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #eaeaea;
+}
+
+
+
+.ul_float{
+	margin:0;
+	overflow:auto;
+	height:auto;
+ list-style:none;
+ li{
+	 h4 {
+	 	margin-top:0px;
+	}
+select{
+height: 30px;
+}
+	 #province{ width:149px;  }
+	 #city{ width:85px; }
+	 #district{width: 85px;}
+	 margin-right:15px;
+	 float:left;
+	 font-size:1em;
+ }
+}
+
+.switch{
+	font-size: 12px;
+	margin: 10px 0 0 0;
+}
+
+.grades_ul{
+	margin: 0 0 0 0;
+	list-style: none;
+}
+
+.clas_ul{
+	margin: 0 0 0 0;
+	list-style: none;	
+	overflow: auto;
+	height: auto;
+}
+
+.schools_ul{
+	list-style: none;
+}
+
+
+
+

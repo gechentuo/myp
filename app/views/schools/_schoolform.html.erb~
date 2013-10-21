@@ -1,0 +1,114 @@
+<%-
+	province = ''
+    
+	city = ''
+  
+	district = ''
+	
+	provinces  = ChinaCity.list
+      
+	cities     = ChinaCity.list(province)
+    
+	districtes = ChinaCity.list(city)
+%>
+<% content_for :script do %>
+ 
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=23f86e79c2a4317be8836304572ae6da"></script>
+	<script type="text/javascript">
+$(document).ready(function(){
+	var map = new BMap.Map("allmap");            
+ 	var point = new BMap.Point(116.404, 39.915);  
+
+	var marker = new BMap.Marker();
+	map.centerAndZoom(point,10); 
+	map.enableScrollWheelZoom();  
+	map.addControl(new BMap.MapTypeControl());
+	map.addControl(new BMap.ScaleControl());
+ 
+ 	
+	var province='';
+	var city='';
+	var district='';
+	var schname='';
+	$("#school_schname").keydown(function(){
+	schname=$(this).val();
+	var local = new BMap.LocalSearch(province+city+district, {	
+	onSearchComplete: function(results){
+	var p = results.getPoi(0);
+	marker.setPosition(p.point);
+	marker.setTitle(p.title);
+	map.centerAndZoom(p.point, 17);
+	map.addOverlay(marker);
+	},pageCapacity: 8});
+	local.search(schname);
+	});
+
+
+	$("#province").change(function(){
+	province=$(this).children('option:selected').text();
+	var local = new BMap.LocalSearch(province+city+district, {	
+	onSearchComplete: function(results){
+	var p = results.getPoi(0);
+	marker.setPosition(p.point);
+	marker.setTitle(p.title);
+	map.centerAndZoom(p.point, 17);
+	map.addOverlay(marker);
+	},pageCapacity: 8});
+	local.search(schname);
+	});
+	
+/*
+$("#city").change(function(){
+	city=$(this).children('option:selected').text();
+	var local = new BMap.LocalSearch(province+city+district, {	
+	onSearchComplete: function(results){
+	var p = results.getPoi(0);
+	marker.setPosition(p.point);
+	marker.setTitle(p.title);
+	map.centerAndZoom(p.point, 17);
+	map.addOverlay(marker);
+	},pageCapacity: 8});
+		local.search(schname);
+	});
+	
+$("#district").change(function(){
+		
+	district=$(this).children('option:selected').text();
+	var local = new BMap.LocalSearch(province+city+district, {	
+	onSearchComplete: function(results){
+	var p = results.getPoi(0);
+	marker.setPosition(p.point);
+	marker.setTitle(p.title);
+	map.centerAndZoom(p.point, 17);
+	map.addOverlay(marker);
+	},pageCapacity: 8});
+	local.search(schname);
+	});*/
+});	
+</script>
+
+<% end %>
+
+<%= form_for( @school ) do |f| %>
+
+	<%= f.label :schname, '幼儿园名称'%>
+	<%= f.text_field :schname, class: "input-xlarge" %>
+	<br>
+	<%= f.label :phone, '联系电话'%>
+	<%= f.text_field :phone, class: "input-xlarge" %>
+	<br>
+	<%= f.label :privince, '地区' %>
+	<div class='rails-helper city-group '>
+		<ul class="ul_float input-block-level">
+			<li>
+			<%= select_tag :province, options_for_select(provinces, province) , prompt: '--省份--', class: ['city-select', 'city-province'] %></li>
+			<li><%= select_tag :city    , options_for_select(cities, city)        , prompt: '--城市--', class: ['city-select', 'city-city'] %></li>
+			<li><%= select_tag :district, options_for_select(districtes, district), prompt: '--地区--', class: ['city-select', 'city-district'] %></li>
+		</ul>
+	</div>
+	<br>
+	<%= f.label :block, '街道地址' %>
+	<%= f.text_field :block, class: "input-xlarge" %>
+	<br>
+	<%= f.submit '提交', class: "btn btn-large btn-primary"%>
+<% end %>

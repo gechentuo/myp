@@ -1,0 +1,36 @@
+<%  content_for :main do %>
+<div class="row">
+  <div class="span11  user_type" style="margin-left:45px" %>
+<h3 style="margin:0px;color:rgb(51,51,51)">开通服务</h3>
+<p>选择您需要开通的服务类型</p>
+	  <%= form_for( @user,url: update_type_user_path(@user) , html: {method: "patch"}) do |f| %>
+		  <div id="select_user_type">	
+	  <ul>		
+		  <li>
+		  <%= image_tag 'teacher.jpg',class: "img-circle"%>
+		  <%= radio_button_tag(:type, 'teacher')%>
+		  <%= label_tag(:type_teacher, '幼师')%>
+		  </li>
+
+		  <li>
+		  <%= image_tag 'school.jpg',class: "img-circle"%>
+		  <%= radio_button_tag(:type, 'school') %>
+		  <%= label_tag(:type_school, '学校')%>
+		  </li>
+
+		  <li>
+		  <%= image_tag 'parent.jpg',class: "img-circle"%>
+		  <%= radio_button_tag(:type, 'parent') %>
+		  <%= label_tag(:type_parent, '家长')%>
+		  </li>
+		  <%= f.submit "提交选择", class: "btn btn-large btn-primary"%>
+  
+	  </ul>
+  </div>
+  <% end %>
+
+  
+  </div>
+
+</div>
+<% end %>

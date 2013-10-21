@@ -1,0 +1,3 @@
+$("#addCla<%=@gid%>").modal('hide')
+$("#g<%=@gid%> ul.clas_ul").html("<%= escape_javascript(render(@clas))%>")
+init_clasul();

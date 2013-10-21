@@ -1,0 +1,71 @@
+<% content_for :leftsidebar%>
+<%= render 'shared/schsidebar' %>
+<% end %>
+
+<% content_for :main%>
+<div class="row"> 
+	<div class="span10">
+		<a href="#addGrade" role="button" class="btn btn-mini btn-success" data-toggle="modal">添加年级</a>
+		<hr style="margin:0 0 0 0;border-top:1px solid gray; margin-top:5px">
+		<ul class="grades_ul">
+			<%= render(@grades) || "你还没有创建年级。"%>
+		</ul>
+	</div>
+</div>
+<div id="addGrade" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="addGrade" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		<h4 id="addGrade">添加年级</h4>
+	</div>
+	<div class="modal-body">
+		<%= form_for(@grade, remote: true) do |f| %>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+			<%= f.submit "创建年级", style: "margin-bottom:10px;margin-left: 15px;" %>
+		<% end %> 
+	</div>
+</div>
+
+<% end %>
+<% content_for :scripts do %>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			init_span();	
+		        init_clasul();		
+
+		})
+function switchSpan(span){
+	if(span.text()=='显示所有班级'){
+		span.text('收起');
+	}else{
+		span.text('显示所有班级');
+	}
+}
+function init_span(){
+	var showes = $("span.show");	
+	showes.each(function(){ 
+			$(this).click(function(){
+				$(this).parent().prev().children().children(":gt(4)").toggle(100);
+				switchSpan($(this));
+				})	
+			})	
+}
+function init_clasul(){
+	var grades = $("div ul.clas_ul");
+
+	grades.each(function(){
+			var count = $(this).children().size();
+			if(count>5){
+				$(this).children(":gt(4)").hide();
+				$(this).parent().next().children().first().show();
+			}else{
+				$(this).parent().next().children().first().hide();	
+			}
+			})
+
+}
+
+	</script>
+<% end %>
+
+

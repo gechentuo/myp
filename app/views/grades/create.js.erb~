@@ -1,0 +1,12 @@
+$(".grades_ul").html("<%= escape_javascript(render(@grades)) %>")
+$("#addGrade").modal('hide')
+				var showes = $("span.show")
+				showes.each(function(){ 
+					$(this).click(function(){
+						var tmp = $(this).attr("id");
+						tmp = tmp.substring(4,tmp.length); 
+						$("#g"+tmp+" ul.clas_ul").children(":gt(4)").toggle(100);
+					})
+				})
+
+

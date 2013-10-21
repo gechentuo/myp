@@ -1,0 +1,5 @@
+class ClasesController < ApplicationController
+	def index
+		redirect_to root_path(current_user.school)
+	end
+end
